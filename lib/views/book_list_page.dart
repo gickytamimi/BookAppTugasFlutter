@@ -1,11 +1,6 @@
-import 'dart:convert' show jsonDecode;
-import 'package:book_app/Models/book_list_response.dart';
 import 'package:book_app/controller/book_controller.dart';
 import 'package:book_app/views/detail_book_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class BookListPage extends StatefulWidget {
@@ -17,20 +12,20 @@ class BookListPage extends StatefulWidget {
 
 class _BookListPageState extends State<BookListPage> {
  BookController? bookController;
- @override
-  void initState() {
+ // ignore: non_constant_identifier_names
+ void State() {
     bookController = Provider.of<BookController>(context, listen: false) ; 
     bookController!.fetchBookApi();
-    // TODO: implement initState    
+    // 
 }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Book Catalogue"),
+        title: const Text("Book Catalogue"),
       ),
       body: Consumer<BookController>(
-        child: Center (child : CircularProgressIndicator()),
+        child: const Center (child : CircularProgressIndicator()),
         builder: (context, controller, child) => Container(
           child: controller.bookList == null 
           ?  child

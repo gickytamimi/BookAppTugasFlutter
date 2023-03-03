@@ -1,27 +1,27 @@
-class Book_List_Response {
+class BookListResponse {
   String? error;
   String? total;
   List<Books>? books;
 
-  Book_List_Response({this.error, this.total, this.books});
+  BookListResponse({error, total, books});
 
-  Book_List_Response.fromJson(Map<String, dynamic> json) {
+  BookListResponse.fromJson(Map<String, dynamic> json) {
     error = json['error'];
     total = json['total'];
     if (json['books'] != null) {
       books = <Books>[];
       json['books'].forEach((v) {
-        books!.add(new Books.fromJson(v));
+        books!.add(Books.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['error'] = this.error;
-    data['total'] = this.total;
-    if (this.books != null) {
-      data['books'] = this.books!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['error'] = error;
+    data['total'] = total;
+    if (books != null) {
+      data['books'] = books!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -53,13 +53,13 @@ class Books {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['isbn13'] = this.isbn13;
-    data['price'] = this.price;
-    data['image'] = this.image;
-    data['url'] = this.url;
+    final Map<String, dynamic> data = {};
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['isbn13'] = isbn13;
+    data['price'] = price;
+    data['image'] = image;
+    data['url'] = url;
     return data;
   }
 }

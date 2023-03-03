@@ -1,14 +1,8 @@
 
-import 'dart:convert';
-
-import 'package:book_app/Models/book_detail_response.dart';
-import 'package:book_app/Models/book_list_response.dart';
+// ignore_for_file: file_names
 import 'package:book_app/controller/book_controller.dart';
 import 'package:book_app/views/image_view_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,7 +17,6 @@ class _DetailBookPageState extends State<DetailBookPage> {
     BookController? bookController;
     @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     bookController = Provider.of<BookController>(context, listen : false);
      bookController!.fetchDetailBookApi(widget.isbn);  
@@ -33,12 +26,12 @@ class _DetailBookPageState extends State<DetailBookPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detail"),
+        title: const Text("Detail"),
       ),
       body: Consumer<BookController>(
         builder: (context, controller, child) {
           return bookController!.detailBook == null
-      ? Center(child: CircularProgressIndicator ())
+      ? const Center(child: CircularProgressIndicator ())
       : Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -67,17 +60,17 @@ class _DetailBookPageState extends State<DetailBookPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(bookController!.detailBook!.title!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold
                         ),),
                         Text(bookController!.detailBook!.authors!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
                           // fontWeight: FontWeight.bold
                         ),),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                 children: List.generate(5,
                  (index) => Icon(
@@ -89,14 +82,14 @@ class _DetailBookPageState extends State<DetailBookPage> {
               // Text(detailBook!.rating!),    
               ),
                         Text(bookController!.detailBook!.subtitle!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
                           // fontWeight: FontWeight.bold
                         ),),
                         Text(bookController!.detailBook!.price!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.green,),),
@@ -106,8 +99,8 @@ class _DetailBookPageState extends State<DetailBookPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
-              Container(
+              const SizedBox(height: 20,),
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -140,7 +133,7 @@ class _DetailBookPageState extends State<DetailBookPage> {
               Divider(),
               bookController!.similiarBooks == null 
               ? CircularProgressIndicator()
-              : Container(
+              : SizedBox(
                 height: 180,
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -149,7 +142,7 @@ class _DetailBookPageState extends State<DetailBookPage> {
                   // physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index){
                     final current = bookController!.similiarBooks!.books![index];
-                    return Container(
+                    return SizedBox(
                       width: 100,
                       child: Column(
                         children: [
